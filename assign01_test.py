@@ -1,61 +1,63 @@
 import unittest
+import random
+import math
 from assign01 import *
 
 
 class TestAssign1Functions(unittest.TestCase):
     """ A class derived from unittest.TestCase to test activity01.py functions """
 
-    def testHelloWorldNormal(self):
-        """ Confirm that helloWorldNormal() returns the correct string """
-        self.assertEqual('hello world', helloWorldNormal())
+    def setUp(self):
+        self.list_testA = [3, 5, 6, 13, 22, 27, 34]
+        self.item_testA = 13
+        self.list_testB = list(range(1, 1001))
+        self.item_testB = 500
+        self.list_testC = list(range(1, 100001))
+        self.item_testC = 50000
+        self.testC_linear_runtime = linearSearch(self.list_testC, self.item_testC)[2]
+        self.testC_binary_runtime = binarySearch(self.list_testC, self.item_testC)[2]
 
-    def testHelloWorldInReverse(self):
-        """ Confirm that helloWorldInReverse() returns the correct string """
-        self.assertEqual('hello world'[::-1], helloWorldInReverse())
+    def testLinearSearchA(self):
+        """ Confirm that linearSearch can find an item """
+        ls_res = linearSearch(self.list_testA, self.item_testA)
+        print(f"testLinearSearchA runtime = {ls_res[2]:.6f}")
+        self.assertTrue(ls_res[0])
+        self.assertEqual(ls_res[1], 4)
 
-    def testHelloWorldTimesX(self):
-        """ Confirm helloWorldTimesX() returns correct string for given input """
-        self.assertEqual('hello world' * 3, helloWorldTimesX(3))
+    def testBinarySearchA(self):
+        """ Confirm that binarySearch can find an item """
+        bs_res = binarySearch(self.list_testA, self.item_testA)
+        print(f"testBinarySearchA runtime = {bs_res[2]:.6f}")
+        self.assertTrue(bs_res[0])
+        self.assertEqual(bs_res[1], 1)
 
-    def testCircleCircumferenceR1(self):
-        """ test that circumference for radius one is correct """
-        r = 1.0
-        expected_value = 2 * 3.14159 * r
-        actual_value = circleCircumference(r)
-        self.assertAlmostEqual(actual_value, expected_value, 2, \
-                "incorrect circumference for r = 1")
+    def testLinearSearchB(self):
+        """ Confirm that linearSearch can find an item """
+        ls_res = linearSearch(self.list_testB, self.item_testB)
+        print(f"testLinearSearchB runtime = {ls_res[2]:.6f}")
+        self.assertTrue(ls_res[0])
+        self.assertEqual(ls_res[1], self.item_testB)
 
-    def testCircleCircumferenceR3(self):
-        """ test that circumference for radius three is correct """
-        r = 3.0
-        expected_value = 2 * 3.14159 * r
-        actual_value = circleCircumference(r)
-        self.assertAlmostEqual(actual_value, expected_value, 2, \
-                "incorrect circumference for r = 3")
+    def testBinarySearchB(self):
+        """ Confirm that binarySearch can find an item """
+        bs_res = binarySearch(self.list_testB, self.item_testB)
+        print(f"testBinarySearchB runtime = {bs_res[2]:.6f}")
+        self.assertTrue(bs_res[0])
+        self.assertLessEqual(bs_res[1], int(math.log2(len(self.list_testB))) + 1)
 
-    def testCircleAreaR1(self):
-        """ test that area for radius one is correct """
-        r = 1.0
-        expected_value = 3.14159 * r**2
-        actual_value = circleArea(r)
-        self.assertAlmostEqual(actual_value, expected_value, 2, \
-                "incorrect area for r = 1")
+    def testLinearSearchC(self):
+        """ Confirm that linearSearch can find an item """
+        ls_res = linearSearch(self.list_testC, self.item_testC)
+        print(f"testLinearSearchC runtime = {ls_res[2]:.6f}")
+        self.assertTrue(ls_res[0])
+        self.assertEqual(ls_res[1], self.item_testC)
 
-    def testCircleAreaR7(self):
-        """ test that area for radius seven is correct """
-        r = 7.0
-        expected_value = 3.14159 * r**2
-        actual_value = circleArea(r)
-        self.assertAlmostEqual(actual_value, expected_value, 2, \
-                "incorrect area for r = 7")
+    def testBinarySearchC(self):
+        """ Confirm that binarySearch can find an item """
+        bs_res = binarySearch(self.list_testC, self.item_testC)
+        print(f"testBinarySearchC runtime = {bs_res[2]:.6f}")
+        self.assertTrue(bs_res[0])
+        self.assertLessEqual(bs_res[1], int(math.log2(len(self.list_testC))) + 1)
 
-    def testCircleCircumferenceRneg1(self):
-        """ check that appropriate exception is raised for r = -1 """
-        r = -1.0
-        self.assertRaises(ValueError, circleCircumference, r)
-
-    def testCircleAreaRstr(self):
-        """ check that appropriate exception is raised when r is a bool """
-        r = True
-        self.assertRaises(TypeError, circleArea, r)
-
+    def testUltimateTest(self):
+        self.assertLess(self.testC_binary_runtime, self.testC_linear_runtime/10.0)
