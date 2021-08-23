@@ -59,5 +59,5 @@ class TestAssign1Functions(unittest.TestCase):
         self.assertTrue(bs_res[0])
         self.assertLessEqual(bs_res[1], int(math.log2(len(self.list_testC))) + 1)
 
-    def testUltimateTest(self):
+    def testCompareRuntimes(self):
         self.assertLess(self.testC_binary_runtime, self.testC_linear_runtime/10.0)
