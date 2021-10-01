@@ -33,7 +33,7 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testFloydAndDijkstra(self):
         """ Confirm that both produce same results """
-        self.assertGreater(self.elapsed_time_dijkstra * 1.5, self.elapsed_time_floyd)
+        self.assertGreater(self.elapsed_time_dijkstra * 2.0, self.elapsed_time_floyd)
         self.assertEqual(self.res_dijkstra100, self.res_floyd100)
 
     def testDijkstra10(self):
