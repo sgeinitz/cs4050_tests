@@ -9,6 +9,8 @@ class TestAssign3Functions(unittest.TestCase):
         self.g10 = adjMatFromFile("graph_10verts.txt")
         self.g20 = adjMatFromFile("graph_20verts.txt")
         self.g100 = adjMatFromFile("graph_100verts.txt")
+        self.g100_alt1 = adjMatFromFile("graph_100verts.txt")
+        self.g100_alt2 = adjMatFromFile("graph_100verts.txt")
         self.g10alt = [list(row) for row in self.g10]
         self.g10alt[6][1], self.g10alt[6][8] = self.g10alt[6][8], self.g10alt[6][1]
         self.g10alt[2][8] = 4
@@ -20,13 +22,13 @@ class TestAssign3Functions(unittest.TestCase):
 
         self.res_dijkstra100 = [[None]*len(self.g100) for i in range(len(self.g100))]
         start_time = time.time()
-        for sv in range(len(self.g100)):
+        for sv in range(len(self.g100_alt1)):
             self.res_dijkstra100[sv] = dijkstra(self.g100, sv)
         self.elapsed_time_dijkstra = time.time() - start_time
         self.res_dijkstra100
 
         start_time = time.time()
-        self.res_floyd100 = floyd(self.g100)
+        self.res_floyd100 = floyd(self.g100_alt2)
         self.elapsed_time_floyd = time.time() - start_time
 
     def testFloydAndDijkstra(self):
