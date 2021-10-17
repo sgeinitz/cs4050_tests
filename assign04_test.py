@@ -41,17 +41,16 @@ class TestAssign4Functions(unittest.TestCase):
 
     def testPrim(self):
         """ Confirm that Prim's produces correct results """
-        #self.assertEqual(self.res_prim10[7], (i, j, c))
-        #self.assertEqual(self.res_prim100A[17], (i, j, c))
-        #self.assertEqual(self.res_prim100B[71], (i, j, c))
-        pass
+        self.assertEqual(self.st(self.res_prim10), 94)
+        self.assertEqual(self.st(self.res_prim100A), 418)
+        self.assertEqual(self.st(self.res_prim100B), 99)
 
     def testKruskal(self):
         """ Confirm that Kruskal's produces correct results """
-        #self.assertEqual(self.res_krus10[7], (i, j, c))
+        self.assertEqual(self.st(self.res_krus10), 94)
+        self.assertEqual(self.st(self.res_krus100A), 418)
+        self.assertEqual(self.st(self.res_krus100B), 99)
         #self.assertEqual(self.res_krus100A[17], (i, j, c))
-        #self.assertEqual(self.res_krus100B[71], (i, j, c))
-        pass
 
     def testSameResults(self):
         """ Confirm each produces same results """
