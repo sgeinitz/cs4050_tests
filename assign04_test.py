@@ -35,7 +35,7 @@ class TestAssign4Functions(unittest.TestCase):
         self.time_krus100B = time.time() - start_time
         self.res_krus100B.sort()
 
-    def stCost(spantree):
+    def stCost(self, spantree):
         edge_weights = [e[2] for e in spantree]
         return sum(edge_weights)
 
