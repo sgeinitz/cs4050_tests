@@ -35,6 +35,10 @@ class TestAssign4Functions(unittest.TestCase):
         self.time_krus100B = time.time() - start_time
         self.res_krus100B.sort()
 
+    def stCost(spantree):
+        edge_weights = [e[2] for e in spantree]
+        return sum(edge_weights)
+
     def testPrim(self):
         """ Confirm that Prim's produces correct results """
         #self.assertEqual(self.res_prim10[7], (i, j, c))
@@ -51,10 +55,9 @@ class TestAssign4Functions(unittest.TestCase):
 
     def testSameResults(self):
         """ Confirm each produces same results """
-        #self.assertEqual(self.res_prim10, self.res_krus10)
-        #self.assertEqual(self.res_prim100A, self.res_krus100A)
-        #self.assertEqual(self.res_prim100B, self.res_krus100B)
-        pass
+        self.assertEqual(self.st(self.res_prim10), self.st(self.res_krus10))
+        self.assertEqual(self.st(self.res_prim100A), self.st(self.res_krus100A))
+        self.assertEqual(self.st(self.res_prim100B), self.st(self.res_krus100B))
 
     def testTimings(self):
         """ Confirm each algo runs as quickly as expected (given the input) """
