@@ -41,22 +41,22 @@ class TestAssign4Functions(unittest.TestCase):
 
     def testPrim(self):
         """ Confirm that Prim's produces correct results """
-        self.assertEqual(self.st(self.res_prim10), 94)
-        self.assertEqual(self.st(self.res_prim100A), 418)
-        self.assertEqual(self.st(self.res_prim100B), 99)
+        self.assertEqual(self.stCost(self.res_prim10), 94)
+        self.assertEqual(self.stCost(self.res_prim100A), 418)
+        self.assertEqual(self.stCost(self.res_prim100B), 99)
 
     def testKruskal(self):
         """ Confirm that Kruskal's produces correct results """
-        self.assertEqual(self.st(self.res_krus10), 94)
-        self.assertEqual(self.st(self.res_krus100A), 418)
-        self.assertEqual(self.st(self.res_krus100B), 99)
+        self.assertEqual(self.stCost(self.res_krus10), 94)
+        self.assertEqual(self.stCost(self.res_krus100A), 418)
+        self.assertEqual(self.stCost(self.res_krus100B), 99)
         #self.assertEqual(self.res_krus100A[17], (i, j, c))
 
     def testSameResults(self):
         """ Confirm each produces same results """
-        self.assertEqual(self.st(self.res_prim10), self.st(self.res_krus10))
-        self.assertEqual(self.st(self.res_prim100A), self.st(self.res_krus100A))
-        self.assertEqual(self.st(self.res_prim100B), self.st(self.res_krus100B))
+        self.assertEqual(self.stCost(self.res_prim10), self.stCost(self.res_krus10))
+        self.assertEqual(self.stCost(self.res_prim100A), self.stCost(self.res_krus100A))
+        self.assertEqual(self.stCost(self.res_prim100B), self.stCost(self.res_krus100B))
 
     def testTimings(self):
         """ Confirm each algo runs as quickly as expected (given the input) """
