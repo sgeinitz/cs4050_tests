@@ -1,4 +1,3 @@
-# additional/misc files sometimes cached by Python
+# additional/miscellaneous files sometimes cached by Python
 __pycache__/
 *.py[cod]
-
