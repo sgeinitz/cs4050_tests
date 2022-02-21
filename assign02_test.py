@@ -2,7 +2,7 @@ import unittest
 import random
 import math
 import sys
-sys.setrecursionlimit(50000)
+sys.setrecursionlimit(500000)
 
 from assign02 import *
 
