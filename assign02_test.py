@@ -56,8 +56,8 @@ class TestAssign2Functions(unittest.TestCase):
 
     def testTimings(self):
         """ Confirm that sorting functions run in expected times """
-        self.assertGreater(self.shuf_bubbleRes[1]/5, self.shuf_mergeRes2[1])
-        self.assertGreater(self.shuf_bubbleRes[1]/5, self.shuf_mergeRes3[1])
+        self.assertGreater(self.shuf_bubbleRes[1]/2, self.shuf_mergeRes2[1])
+        self.assertGreater(self.shuf_bubbleRes[1]/2, self.shuf_mergeRes3[1])
         self.assertGreater(self.shuf_bubbleRes[1]/10, self.shuf_quickResA[1])
         self.assertGreater(self.shuf_bubbleRes[1]/10, self.shuf_quickResB[1])
         self.assertGreater(self.shuf_bubbleRes[1]/2, self.shuf_radixRes[1]) # changed to 1/2 from 1/10
