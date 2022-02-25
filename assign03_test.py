@@ -32,6 +32,7 @@ class TestAssign3Functions(unittest.TestCase):
         for sv in range(len(self.g100A)):
             self.res_dijkstra_pq100A[sv] = dijkstra_w_pri_queue(list(self.g100A), sv)
         self.elapsed_time_dijkstra_pqA = time.time() - start_time
+        print(f"dijkstra pri que w/ sparse graph: {self.elapsed_time_dijkstra_pqA:.4f} runtime")
 
         # run dijkstra's with an array on a sparse graph -> O( V^2 )
         self.res_dijkstra_arr100A = [[None]*len(self.g100A) for i in range(len(self.g100A))]
@@ -39,6 +40,7 @@ class TestAssign3Functions(unittest.TestCase):
         for sv in range(len(self.g100A)):
             self.res_dijkstra_arr100A[sv] = dijkstra_w_array(list(self.g100A), sv)
         self.elapsed_time_dijkstra_arrA = time.time() - start_time
+        print(f"dijkstra array w/ sparse graph: {self.elapsed_time_dijkstra_arrA:.4f} runtime")
 
         # run dijkstra's with a priority queue on a dense graph -> O(E * lg V), so longer runtime than w/ A
         self.res_dijkstra_pq100B = [[None]*len(self.g100B) for i in range(len(self.g100B))]
@@ -46,6 +48,7 @@ class TestAssign3Functions(unittest.TestCase):
         for sv in range(len(self.g100B)):
             self.res_dijkstra_pq100B[sv] = dijkstra_w_pri_queue(list(self.g100B), sv)
         self.elapsed_time_dijkstra_pqB = time.time() - start_time
+        print(f"dijkstra pri que w/ dense graph: {self.elapsed_time_dijkstra_pqB:.4f} runtime")
 
         # run dijkstra's with an array on a dense graph -> O( V^2 ), so roughly same runtime as w/ A
         self.res_dijkstra_arr100B = [[None]*len(self.g100B) for i in range(len(self.g100B))]
@@ -53,6 +56,7 @@ class TestAssign3Functions(unittest.TestCase):
         for sv in range(len(self.g100B)):
             self.res_dijkstra_arr100B[sv] = dijkstra_w_array(list(self.g100B), sv)
         self.elapsed_time_dijkstra_arrB = time.time() - start_time
+        print(f"dijkstra array w/ dense graph: {self.elapsed_time_dijkstra_arrB:.4f} runtime")
 
         # floyd's with sparse graph
         start_time = time.time()
@@ -77,9 +81,9 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testDijkstraTiming(self):
         """ Dijkstra with array should be similar, but with priqueue is different """
-        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB < 1.5)
-        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB > 0.5)
-        self.assertTrue(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA > 2.0)
+        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB < 1.25)
+        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB > 0.75)
+        self.assertTrue(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA > 1.75)
 
     def testDijkstra10(self):
         """ Confirm that functions run as expected """
