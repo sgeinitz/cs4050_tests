@@ -7,14 +7,14 @@ class TestAssign3Functions(unittest.TestCase):
 
     def setUp(self):
         self.g10 = adjMatFromFile("graph_10verts.txt")
-        self.g10alt = self.g10.copy()
+        self.g10alt = [list(row) for row in self.g10]
         self.g10alt[6][1], self.g10alt[6][8] = self.g10alt[6][8], self.g10alt[6][1]
         self.g10alt[2][8] = 4
 
         self.g20 = adjMatFromFile("graph_20verts.txt")
 
-        self.g150A = adjMatFromFile("graph_150verts_A.txt") # sparse graph
-        self.g150B = adjMatFromFile("graph_150verts_B.txt") # dense graph
+        self.g100A = adjMatFromFile("graph_100verts_A.txt") # sparse graph
+        self.g100B = adjMatFromFile("graph_100verts_B.txt") # dense graph
 
         self.dijkstra_start = 2
 
@@ -27,48 +27,48 @@ class TestAssign3Functions(unittest.TestCase):
         self.res_dijkstra_arr20 = dijkstra_w_array(list(self.g20), self.dijkstra_start)
 
         # run dijkstra's with a priority queue on a sparse graph -> O(E * lg V)
-        self.res_dijkstra_pq150A = [[None]*len(self.g150A) for i in range(len(self.g150A))]
+        self.res_dijkstra_pq100A = [[None]*len(self.g100A) for i in range(len(self.g100A))]
         start_time = time.time()
-        for sv in range(len(self.g150A)):
-            self.res_dijkstra_pq150A[sv] = dijkstra_w_pri_queue(list(self.g150A), sv)
+        for sv in range(len(self.g100A)):
+            self.res_dijkstra_pq100A[sv] = dijkstra_w_pri_queue(list(self.g100A), sv)
         self.elapsed_time_dijkstra_pqA = time.time() - start_time
 
         # run dijkstra's with an array on a sparse graph -> O( V^2 )
-        self.res_dijkstra_arr150A = [[None]*len(self.g150A) for i in range(len(self.g150A))]
+        self.res_dijkstra_arr100A = [[None]*len(self.g100A) for i in range(len(self.g100A))]
         start_time = time.time()
-        for sv in range(len(self.g150A)):
-            self.res_dijkstra_arr150A[sv] = dijkstra_w_array(list(self.g150A), sv)
+        for sv in range(len(self.g100A)):
+            self.res_dijkstra_arr100A[sv] = dijkstra_w_array(list(self.g100A), sv)
         self.elapsed_time_dijkstra_arrA = time.time() - start_time
 
         # run dijkstra's with a priority queue on a dense graph -> O(E * lg V), so longer runtime than w/ A
-        self.res_dijkstra_pq150B = [[None]*len(self.g150B) for i in range(len(self.g150B))]
+        self.res_dijkstra_pq100B = [[None]*len(self.g100B) for i in range(len(self.g100B))]
         start_time = time.time()
-        for sv in range(len(self.g150B)):
-            self.res_dijkstra_pq150B[sv] = dijkstra_w_pri_queue(list(self.g150B), sv)
+        for sv in range(len(self.g100B)):
+            self.res_dijkstra_pq100B[sv] = dijkstra_w_pri_queue(list(self.g100B), sv)
         self.elapsed_time_dijkstra_pqB = time.time() - start_time
 
         # run dijkstra's with an array on a dense graph -> O( V^2 ), so roughly same runtime as w/ A
-        self.res_dijkstra_arr150B = [[None]*len(self.g150B) for i in range(len(self.g150B))]
+        self.res_dijkstra_arr100B = [[None]*len(self.g100B) for i in range(len(self.g100B))]
         start_time = time.time()
-        for sv in range(len(self.g150B)):
-            self.res_dijkstra_arr150B[sv] = dijkstra_w_array(list(self.g150B), sv)
+        for sv in range(len(self.g100B)):
+            self.res_dijkstra_arr100B[sv] = dijkstra_w_array(list(self.g100B), sv)
         self.elapsed_time_dijkstra_arrB = time.time() - start_time
 
         # floyd's with sparse graph
         start_time = time.time()
-        self.res_floyd150A = floyd(list(self.g150A))
+        self.res_floyd100A = floyd(list(self.g100A))
         self.elapsed_time_floydA = time.time() - start_time
 
         # floyd's with dense graph
         start_time = time.time()
-        self.res_floyd150B = floyd(list(self.g150B))
+        self.res_floyd100B = floyd(list(self.g100B))
         self.elapsed_time_floydB = time.time() - start_time
 
     def testFloydAndDijkstraDistances(self):
         """ Confirm that all three produce same results """
         self.assertGreater(self.elapsed_time_dijkstra_pqA * 2.0, self.elapsed_time_floydA)
-        self.assertEqual(self.res_dijkstra_pq150A, self.res_floyd150A)
-        self.assertEqual(self.res_dijkstra_arr150A, self.res_floyd150A)
+        self.assertEqual(self.res_dijkstra_pq100A, self.res_floyd100A)
+        self.assertEqual(self.res_dijkstra_arr100A, self.res_floyd100A)
 
     def testFloydTiming(self):
         """ Floyd's runtime is not dependent on number of edges """
@@ -83,10 +83,10 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testDijkstra10(self):
         """ Confirm that functions run as expected """
-        expected_10 = [20, 16, 0, 14, 8, 2, 11, 9, 4, 8]
+        expected_10 = [46, 52, 0, 19, 8, 2, 37, 9, 30, 25]
         self.assertEqual(self.res_dijkstra_pq10, self.res_dijkstra_arr10)
-        self.assertEqual(self.res_dijkstra_arr10, expected10)
-        expected10alt = [46, 52, 0, 19, 8, 2, 37, 9, 30, 25]
+        self.assertEqual(self.res_dijkstra_arr10, expected_10)
+        expected_10alt = [20, 16, 0, 14, 8, 2, 11, 9, 4, 8]
         self.assertEqual(self.res_dijkstra_pq10alt, self.res_dijkstra_arr10alt)
         self.assertEqual(self.res_dijkstra_arr10alt, expected_10alt)
 
