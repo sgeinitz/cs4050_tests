@@ -16,6 +16,8 @@ class TestAssign3Functions(unittest.TestCase):
         self.g150A = adjMatFromFile("graph_150verts_A.txt") # sparse graph
         self.g150B = adjMatFromFile("graph_150verts_B.txt") # dense graph
 
+        self.dijkstra_start = 2
+
         self.res_dijkstra_pq10 = dijkstra_w_pri_queue(list(self.g10), self.dijkstra_start)
         self.res_dijkstra_pq10alt = dijkstra_w_pri_queue(list(self.g10alt), self.dijkstra_start)
         self.res_dijkstra_pq20 = dijkstra_w_pri_queue(list(self.g20), self.dijkstra_start)
@@ -23,8 +25,6 @@ class TestAssign3Functions(unittest.TestCase):
         self.res_dijkstra_arr10 = dijkstra_w_array(list(self.g10), self.dijkstra_start)
         self.res_dijkstra_arr10alt = dijkstra_w_array(list(self.g10alt), self.dijkstra_start)
         self.res_dijkstra_arr20 = dijkstra_w_array(list(self.g20), self.dijkstra_start)
-
-        self.dijkstra_start = 2
 
         # run dijkstra's with a priority queue on a sparse graph -> O(E * lg V)
         self.res_dijkstra_pq150A = [[None]*len(self.g150A) for i in range(len(self.g150A))]
@@ -70,12 +70,12 @@ class TestAssign3Functions(unittest.TestCase):
         self.assertEqual(self.res_dijkstra_pq150A, self.res_floyd150A)
         self.assertEqual(self.res_dijkstra_arr150A, self.res_floyd150A)
 
-    def testFloydTiming(self0):
+    def testFloydTiming(self):
         """ Floyd's runtime is not dependent on number of edges """
         self.assertTrue(self.elapsed_time_floydA/self.elapsed_time_floydB < 1.5)
         self.assertTrue(self.elapsed_time_floydA/self.elapsed_time_floydB > 0.5)
 
-    def testDijkstraTiming(self0):
+    def testDijkstraTiming(self):
         """ Dijkstra with array should be similar, but with priqueue is different """
         self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB < 1.5)
         self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB > 0.5)
@@ -83,11 +83,11 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testDijkstra10(self):
         """ Confirm that functions run as expected """
-        expected10 = [46, 52, 0, 19, 8, 2, 37, 9, 30, 25]
-        self.assertEqual(self.res_dijkstra_pq10, expected10)
+        expected_10 = [20, 16, 0, 14, 8, 2, 11, 9, 4, 8]
+        self.assertEqual(self.res_dijkstra_pq10, self.res_dijkstra_arr10)
         self.assertEqual(self.res_dijkstra_arr10, expected10)
-        expected_10alt = [20, 16, 0, 14, 8, 2, 11, 9, 4, 8]
-        self.assertEqual(self.res_dijkstra_pq10alt, expected_10alt)
+        expected10alt = [46, 52, 0, 19, 8, 2, 37, 9, 30, 25]
+        self.assertEqual(self.res_dijkstra_pq10alt, self.res_dijkstra_arr10alt)
         self.assertEqual(self.res_dijkstra_arr10alt, expected_10alt)
 
     def testDijkstra20(self):
