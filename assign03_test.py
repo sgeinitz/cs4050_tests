@@ -76,14 +76,14 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testFloydTiming(self):
         """ Floyd's runtime is not dependent on number of edges """
-        self.assertTrue(self.elapsed_time_floydA/self.elapsed_time_floydB < 1.5)
-        self.assertTrue(self.elapsed_time_floydA/self.elapsed_time_floydB > 0.5)
+        self.assertLess(self.elapsed_time_floydA/self.elapsed_time_floydB, 1.5)
+        self.assertGreater(self.elapsed_time_floydA/self.elapsed_time_floydB, 0.5)
 
     def testDijkstraTiming(self):
         """ Dijkstra with array should be similar, but with priqueue is different """
-        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB < 1.25)
-        self.assertTrue(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB > 0.75)
-        self.assertTrue(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA > 1.75)
+        self.assertLess(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 1.25)
+        self.assertGreater(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 0.75)
+        self.assertGreater(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA, 1.75)
 
     def testDijkstra10(self):
         """ Confirm that functions run as expected """
