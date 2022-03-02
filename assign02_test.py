@@ -60,9 +60,9 @@ class TestAssign2Functions(unittest.TestCase):
         self.assertGreater(self.shuf_bubbleRes[1]/2, self.shuf_mergeRes3[1])
         self.assertGreater(self.shuf_bubbleRes[1]/10, self.shuf_quickResA[1])
         self.assertGreater(self.shuf_bubbleRes[1]/10, self.shuf_quickResB[1])
-        self.assertGreater(self.shuf_bubbleRes[1]/2, self.shuf_radixRes[1]) # changed to 1/2 from 1/10
+        self.assertGreater(self.shuf_bubbleRes[1]/10, self.shuf_radixRes[1])
         self.assertGreater(self.shuf_mergeRes3[1]*1.5, self.shuf_mergeRes2[1])
-        self.assertGreater(self.rev_quickResA[1]/1.50, self.rev_quickResB[1]) # changed from 1/10
+        self.assertGreater(self.rev_quickResA[1]/10, self.rev_quickResB[1])
         self.assertGreater(self.m3 * 2, self.m2)
         self.assertGreater(self.m2 * 2, self.m3)
 
