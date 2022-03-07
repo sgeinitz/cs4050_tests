@@ -68,9 +68,9 @@ class TestAssign3Functions(unittest.TestCase):
         self.res_floyd100B = floyd(list(self.g100B))
         self.elapsed_time_floydB = time.time() - start_time
 
-    def testFloydAndDijkstraDistances(self):
+    def testFloydAndDijkstra(self):
         """ Confirm that all three produce same results """
-        self.assertGreater(self.elapsed_time_dijkstra_pqA * 2.0, self.elapsed_time_floydA)
+        self.assertGreater(self.elapsed_time_dijkstra_pqA, self.elapsed_time_floydA)
         self.assertEqual(self.res_dijkstra_pq100A, self.res_floyd100A)
         self.assertEqual(self.res_dijkstra_arr100A, self.res_floyd100A)
 
