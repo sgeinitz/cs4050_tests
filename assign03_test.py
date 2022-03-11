@@ -81,9 +81,9 @@ class TestAssign3Functions(unittest.TestCase):
 
     def testDijkstraTiming(self):
         """ Dijkstra with array should be similar, but with priqueue is different """
-        self.assertLess(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 1.25)
-        self.assertGreater(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 0.75)
-        self.assertGreater(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA, 1.75)
+        self.assertLess(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 1.5)
+        self.assertGreater(self.elapsed_time_dijkstra_arrA/self.elapsed_time_dijkstra_arrB, 0.5)
+        self.assertGreater(self.elapsed_time_dijkstra_pqB/self.elapsed_time_dijkstra_pqA, 1.5)
 
     def testDijkstra10(self):
         """ Confirm that functions run as expected """
