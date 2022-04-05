@@ -60,5 +60,5 @@ class TestAssign4Functions(unittest.TestCase):
 
     def testTimings(self):
         """ Confirm each algo runs as quickly as expected (given the input) """
-        self.assertGreater(self.time_prim100A, self.time_krus100A)
+        self.assertGreater(1.25 * self.time_prim100A, self.time_krus100A)
         self.assertGreater(self.time_krus100B, self.time_krus100A)
